@@ -8,7 +8,7 @@ include '../layouts/header.php';
     /* mostrar fecha actual
         formato:  06/06/2024
     */
-    echo date('d-m-Y', $timestamp = time());
+    echo date('d-m-Y');
 ?>
 
 
