@@ -1,6 +1,9 @@
 <?php
 
     //require 'config/config.php';
+    require 'funciones/conexion.php';
+    require 'funciones/productos.php';
+    $productos = listarProductos();
 	include 'layouts/header.php';
 	include 'layouts/nav.php';
 ?>
@@ -29,12 +32,12 @@
             </thead>
             <tbody>
 <?php
-
+        while ( $producto = mysqli_fetch_assoc( $productos ) ){
 ?>            
                 <tr>
-                    <td>Imagen</td>
-                    <td>producto</td>
-                    <td>Precio</td>
+                    <td><img src="productos/<?= $producto['prdImagen'] ?>" class="img-thumbnail"></td>
+                    <td><?= $producto['prdNombre'] ?></td>
+                    <td><?= $producto['prdPrecio'] ?></td>
                     <td>Marca</td>
                     <td>Categoria</td>
                     <td>
@@ -49,7 +52,7 @@
                     </td>
                 </tr>
 <?php
-
+        }
 ?>
             </tbody>
         </table>
