@@ -38,8 +38,8 @@
                     <td><img src="productos/<?= $producto['prdImagen'] ?>" class="img-thumbnail"></td>
                     <td><?= $producto['prdNombre'] ?></td>
                     <td><?= $producto['prdPrecio'] ?></td>
-                    <td>Marca</td>
-                    <td>Categoria</td>
+                    <td><?= $producto['mkNombre'] ?></td>
+                    <td><?= $producto['catNombre'] ?></td>
                     <td>
                         <a href="" class="btn btn-outline-secondary">
                             Modificar
