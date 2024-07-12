@@ -5,13 +5,18 @@
     const CLAVE     = 'root';
     const BASE      = 'catalogo72630';
 
-    function conectar() : mysqli
+    function conectar() : mysqli | false
     {
-        $link = mysqli_connect(
-                SERVER,
-                USUARIO,
-                CLAVE,
-                BASE
-        );
-        return $link;
+        try {
+            return mysqli_connect(
+                    SERVER,
+                    USUARIO,
+                    CLAVE,
+                    BASE
+                );
+        }catch ( Exception $e ){
+            //redirección a página con mensaje de error
+            return false;
+        }
+
     }
