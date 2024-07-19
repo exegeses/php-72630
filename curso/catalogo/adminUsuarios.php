@@ -2,15 +2,16 @@
     require 'config/config.php';
     require 'funciones/autenticacion.php';
         autenticar();
+        checkAdmin();
     require 'funciones/conexion.php';
-    require 'funciones/marcas.php';
-    $marcas = listarMarcas();
+    require 'funciones/usuarios.php';
+    $usuarios = listarUsuarios();
 	include 'layouts/header.php';
 	include 'layouts/nav.php';
 ?>
 
     <main class="container py-4">
-        <h1>Panel de administración de marcas</h1>
+        <h1>Panel de administración de usuarios</h1>
 
         <a href="admin.php" class="btn btn-outline-secondary my-2">
             Volver a dashboard
@@ -20,9 +21,13 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Marca</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Rol</th>
+                    <th>Activo</th>
                     <th colspan="2">
-                        <a href="formAgregarMarca.php" class="btn btn-outline-secondary">
+                        <a href="formAgregarUsuario.php" class="btn btn-outline-secondary">
                             Agregar
                         </a>
                     </th>
@@ -30,24 +35,32 @@
             </thead>
             <tbody>
 <?php
-          while( $marca = mysqli_fetch_assoc($marcas) ){
+        while( $usuario = mysqli_fetch_assoc($usuarios) ){
 ?>
                 <tr>
-                    <td><?= $marca['idMarca'] ?></td>
-                    <td><?= $marca['mkNombre'] ?></td>
+                    <td><?= $usuario['idUsuario']; ?></td>
+                    <td><?= $usuario['nombre']; ?></td>
+                    <td><?= $usuario['apellido']; ?></td>
+                    <td><?= $usuario['email']; ?></td>
+                    <td><?= $usuario['rol']; ?></td>
                     <td>
-                        <a href="formModificarMarca.php?idMarca=<?= $marca['idMarca'] ?>" class="btn btn-outline-secondary">
+                        <?php
+                            echo checkBooleano( $usuario['activo'] );
+                        ?>
+                    </td>
+                    <td>
+                        <a href="formModificarUsuario.php?idUsuario=<?= 'idUsuario' ?>" class="btn btn-outline-secondary">
                             Modificar
                         </a>
                     </td>
                     <td>
-                        <a href="formEliminarMarca.php?idMarca=<?= $marca['idMarca'] ?>" class="btn btn-outline-secondary">
+                        <a href="formEliminarUsuario.php?idUsuario=<?= 'idUsuario' ?>" class="btn btn-outline-secondary">
                             Eliminar
                         </a>
                     </td>
                 </tr>
 <?php
-          }
+        }
 ?>
             </tbody>
         </table>

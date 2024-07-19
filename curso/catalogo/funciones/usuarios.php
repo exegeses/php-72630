@@ -27,3 +27,16 @@
             return false;
         }
     }
+
+    function listarUsuarios() : mysqli_result
+    {
+        $link = conectar();
+        $sql = "SELECT idUsuario, 
+                        nombre, apellido, email, 
+                        u.idRol, r.rol, activo
+                    FROM usuarios AS u
+                    JOIN roles AS r 
+                      ON u.idRol = r.idRol
+                    ORDER BY idUsuario";
+        return mysqli_query($link, $sql);
+        }
